@@ -1,0 +1,75 @@
+﻿port: 8080
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+secret: ''
+
+proxy-groups:
+
+- name: "☠️Panel JULIUS☠️⚡WhatsApp📲+593 984653549⚡"
+  type: select
+  proxies:
+   - 🔻Selecciona🔻 tu Red🔻
+   
+- name: "🔻Selecciona🔻 tu Red🔻"
+  type: select
+  proxies:
+    - MoviPlay 🚀📱 𝙱𝚢 Julius
+    - WhatsApp🔋⚡𝙱𝚢 Julius
+    - FaceBook🎮🍿𝙱𝚢 Julius
+
+  url: http://www.gstatic.com/generate_204
+ 
+###################################
+# JULIUS PANELS
+rules:
+- MATCH, ☠️Panel JULIUS☠️⚡WhatsApp📲+593 984653549⚡
+
+# By Julius，By Julius
+
+proxies:
+
+   ###################################
+
+- name: MoviPlay 🚀📱 𝙱𝚢 Julius
+  type: "trojan"
+  server: miami.juliusnet.com
+  port: 443
+  password: Maritza
+  udp: true
+  sni: play.movistar.com.ec
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+
+- name: WhatsApp🔋⚡𝙱𝚢 Julius
+  type: "trojan"
+  server: miami.juliusnet.com
+  port: 443
+  password: Maritza
+  udp: true
+  sni: www.snr.whatsapp.net
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: FaceBook🎮🍿𝙱𝚢 Julius
+  type: "trojan"
+  server: miami.juliusnet.com
+  port: 443
+  password: Maritza
+  udp: true
+  sni: static.xx.fbcdn.net
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+
+
+####################################
