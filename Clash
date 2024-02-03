@@ -1,0 +1,281 @@
+
+port: 8080
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: '0.0.0.0:9090'
+secret: ''
+
+proxy-groups:
+
+- name: "☠️Panel JULIUS☠️"
+  type: select
+  proxies:
+   - Pennsylvania
+   - Miami
+   - Jacksonville
+   
+- name: "Pennsylvania"
+  type: select
+  proxies:
+   - Trojan*MoviPlay
+   - Trojan*Facebook
+   - Snell*MoviPlay
+   - Snell*Facebook
+   - ShadowS*MoviPlay
+   - ShadowS*Facebook
+  
+- name: "Miami"
+  type: select
+  proxies:
+   - Trojan+MoviPlay
+   - Trojan+Facebook
+   
+- name: "Jacksonville"
+  type: select
+  proxies:
+   - Trojan#MoviPlay
+   - Trojan#Facebook
+   - SSR#MoviPlay
+   - SSR#Facebook
+   - Snell#MoviPlay
+   - Snell#Facebook
+   - ShadowS#MoviPlay
+   - ShadowS#Facebook
+   - VMessWS+MoviPlay
+   - VMessWS+Facebook
+   
+ 
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+ 
+###################################
+# JULIUS PANELS
+rules:
+- MATCH, ☠️Panel JULIUS☠️
+
+# By Julius，By Julius
+
+proxies:
+
+   ##################################
+  
+- name: "Trojan*MoviPlay"
+  type: "trojan"
+  server: pennserver.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: play.movistar.com.ec
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Trojan*Facebook"
+  type: "trojan"
+  server: pennserver.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: static.xx.fbcdn.net
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Snell*MoviPlay"
+  type: snell
+  server: pennserver.juliusnet.com
+  port: 12312
+  psk: M3HgyZuzeQlc4rJH
+  obfs-opts:
+   mode: tls
+   skip-cert-verify: true
+   host: play.movistar.com.ec
+   
+- name: "Snell*Facebook"
+  type: snell
+  server: pennserver.juliusnet.com
+  port: 12312
+  psk: M3HgyZuzeQlc4rJH
+  obfs-opts:
+   mode: tls
+   skip-cert-verify: true
+   host: static.xx.fbcdn.net
+   
+- name: "ShadowS*MoviPlay"
+  server: pennserver.juliusnet.com
+  port: 10490
+  type: ss
+  cipher: aes-256-cfb
+  udp: true
+  tls: true
+  password: Julius
+  plugin: obfs
+  plugin-opts: {mode: tls, host: play.movistar.com.ec}
+  
+- name: "ShadowS*Facebook"
+  server: pennserver.juliusnet.com
+  port: 10490
+  type: ss
+  cipher: aes-256-cfb
+  udp: true
+  tls: true
+  password: Julius
+  plugin: obfs
+  plugin-opts: {mode: tls, host: static.xx.fbcdn.net}
+  
+- name: "Trojan+MoviPlay"
+  type: "trojan"
+  server: miami.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: play.movistar.com.ec
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Trojan+Facebook"
+  type: "trojan"
+  server: miami.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: static.xx.fbcdn.net
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Trojan#MoviPlay"
+  type: "trojan"
+  server: jacksonville.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: play.movistar.com.ec
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Trojan#Facebook"
+  type: "trojan"
+  server: jacksonville.juliusnet.com
+  port: 443
+  password: Julius
+  udp: true
+  sni: static.xx.fbcdn.net
+  alpn:
+  - h2
+  - http/1.1
+  skip-cert-verify: true
+  
+- name: "Snell#MoviPlay"
+  type: snell
+  server: jacksonville.juliusnet.com
+  port: 2345
+  psk: Julius
+  obfs-opts:
+   mode: tls
+   skip-cert-verify: true
+   host: play.movistar.com.ec
+   
+- name: "Snell#Facebook"
+  type: snell
+  server: jacksonville.juliusnet.com
+  port: 2345
+  psk: Julius
+  obfs-opts:
+   mode: tls
+   skip-cert-verify: true
+   host: static.xx.fbcdn.net
+   
+- name: "ShadowS#MoviPlay"
+  server: jacksonville.juliusnet.com
+  port: 15020
+  type: ss
+  cipher: aes-256-cfb
+  udp: true
+  tls: true
+  password: Julius
+  plugin: obfs
+  plugin-opts: {mode: tls, host: play.movistar.com.ec}
+  
+- name: "ShadowS#Facebook"
+  server: jacksonville.juliusnet.com
+  port: 15020
+  type: ss
+  cipher: aes-256-cfb
+  udp: true
+  tls: true
+  password: Julius
+  plugin: obfs
+  plugin-opts: {mode: tls, host: static.xx.fbcdn.net}
+  
+
+- name: "SSR#MoviPlay"
+  type: ssr
+  server: jacksonville.juliusnet.com
+  port: 13019
+  cipher: aes-256-cfb
+  password: "Julius"
+  obfs: tls1.2_ticket_auth
+  protocol: origin
+  obfs-param: play.movistar.com.ec
+  protocol-param: "#"
+  udp: true
+  
+- name: "SSR#Facebook"
+  type: ssr
+  server: jacksonville.juliusnet.com
+  port: 13019
+  cipher: aes-256-cfb
+  password: "Julius"
+  obfs: tls1.2_ticket_auth
+  protocol: origin
+  obfs-param: static.xx.fbcdn.net
+  protocol-param: "#"
+  udp: true
+  
+- name: "VMessWS+MoviPlay"
+  type: vmess
+  server: jacksonville.juliusnet.com
+  port: 38130
+  uuid: 02e631f2-1816-4721-bd4d-3d8f495fd7a1
+  alterId: 0
+  sni: play.movistar.com.ec
+  cipher: auto
+  network: ws
+  tls: true
+  skip-cert-verify: true
+  udp: true
+  ws-opts:
+      path: /vtA5HlZc/
+      headers:
+        Host: play.movistar.com.ec
+        
+- name: "VMessWS+Facebook"
+  type: vmess
+  server: jacksonville.juliusnet.com
+  port: 38130
+  uuid: 02e631f2-1816-4721-bd4d-3d8f495fd7a1
+  alterId: 0
+  sni: play.movistar.com.ec
+  cipher: auto
+  network: ws
+  tls: true
+  skip-cert-verify: true
+  udp: true
+  ws-opts:
+      path: /vtA5HlZc/
+      headers:
+        Host: static.xx.fbcdn.net
+
+####################################
